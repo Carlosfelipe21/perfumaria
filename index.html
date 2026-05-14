@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÉCLAT PARFUMS — Luxo & Exclusividade</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --gold:#c9a84c;
+  --gold2:#e8cc7a;
+  --gold3:#f7e8b8;
+  --dark:#08070a;
+  --dark2:#0f0e13;
+  --dark3:#1a1820;
+  --white:#f0ece4;
+  --white2:#c8c2b6;
+  --pink:#e85f8a;
+  --blue:#4a9fd4;
+  --border:rgba(201,168,76,.15);
+  --border2:rgba(255,255,255,.07);
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--dark);
+  color:var(--white);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CUSTOM CURSOR */
+#cursor{
+  position:fixed;
+  width:10px;height:10px;
+  background:var(--gold2);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:width .2s,height .2s,background .2s;
+  mix-blend-mode:difference;
+}
+#cursor-ring{
+  position:fixed;
+  width:36px;height:36px;
+  border:1px solid rgba(201,168,76,.5);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:99998;
+  transform:translate(-50%,-50%);
+  transition:transform .12s ease-out,width .3s,height .3s;
+}
+
+/* NOISE TEXTURE OVERLAY */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9998;
+  opacity:.45;
+}
+
+/* AMBIENT GLOW BG */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 10%, rgba(201,168,76,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 10% 80%, rgba(232,95,138,.04) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(74,159,212,.03) 0%, transparent 50%);
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* ═══════════════ HEADER ═══════════════ */
+header{
+  position:fixed;top:0;left:0;width:100%;
+  padding:22px 6%;
+  display:flex;justify-content:space-between;align-items:center;
+  z-index:1000;
+  transition:.5s;
+}
+header.scrolled{
+  background:rgba(8,7,10,.88);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:16px 6%;
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.7rem;
+  font-weight:600;
+  letter-spacing:10px;
+  color:var(--gold2);
+  text-decoration:none;
+  position:relative;
+}
+.logo::after{
+  content:'PARFUMS';
+  display:block;
+  font-size:.45rem;
+  letter-spacing:8px;
+  font-weight:300;
+  color:var(--gold);
+  margin-top:-4px;
+  text-align:center;
+}
+
+nav{display:flex;gap:4px;align-items:center;}
+nav a{
+  color:var(--white2);
+  text-decoration:none;
+  font-size:.78rem;
+  font-weight:400;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:10px 16px;
+  border-radius:2px;
+  transition:.3s;
+  position:relative;
+}
+nav a::after{
+  content:'';
+  position:absolute;bottom:6px;left:50%;
+  width:0;height:1px;
+  background:var(--gold);
+  transform:translateX(-50%);
+  transition:.3s;
+}
+nav a:hover{color:var(--gold2);}
+nav a:hover::after{width:50%;}
+
+.nav-cta{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--gold2) !important;
+  padding:9px 22px !important;
+  margin-left:10px;
+  transition:.3s !important;
+}
+.nav-cta:hover{background:rgba(201,168,76,.1);}
+.nav-cta::after{display:none !important;}
+
+/* ═══════════════ HERO ═══════════════ */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 8% 80px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Decorative lines */
+.hero-line-left,.hero-line-right{
+  position:absolute;top:50%;
+  width:200px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);
+  animation:lineFade 3s ease-in-out infinite;
+}
+.hero-line-left{left:3%;transform:rotate(-15deg);}
+.hero-line-right{right:3%;transform:rotate(15deg);}
+
+@keyframes lineFade{
+  0%,100%{opacity:.3;}
+  50%{opacity:.8;}
+}
+
+.hero-eyebrow{
+  font-size:.7rem;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:30px;
+  font-weight:300;
+  opacity:0;
+  animation:fadeUp .8s ease .2s forwards;
+}
+
+.hero-logo-img{
+  width:110px;
+  margin-bottom:40px;
+  filter:drop-shadow(0 0 30px rgba(201,168,76,.25));
+  animation:floatImg 5s ease-in-out infinite, fadeUp .8s ease .1s both;
+}
+
+@keyframes floatImg{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.5rem,9vw,8rem);
+  font-weight:300;
+  line-height:1;
+  letter-spacing:-1px;
+  margin-bottom:8px;
+  opacity:0;
+  animation:fadeUp .8s ease .3s forwards;
+}
+.hero h1 em{
+  font-style:italic;
+  color:var(--gold2);
+}
+.hero h1 span{
+  display:block;
+  font-size:clamp(1.5rem,4vw,3rem);
+  font-weight:300;
+  letter-spacing:8px;
+  text-transform:uppercase;
+  color:var(--white2);
+  font-style:normal;
+  margin-top:8px;
+}
+
+.hero-desc{
+  max-width:520px;
+  color:var(--white2);
+  font-size:.95rem;
+  line-height:2;
+  font-weight:300;
+  margin:35px auto 50px;
+  opacity:0;
+  animation:fadeUp .8s ease .5s forwards;
+}
+
+.hero-ctas{
+  display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+  opacity:0;
+  animation:fadeUp .8s ease .7s forwards;
+}
+
+.btn{
+  padding:16px 38px;
+  border-radius:2px;
+  font-size:.8rem;
+  font-weight:500;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:12px;
+  cursor:none;
+  transition:.4s;
+  position:relative;
+  overflow:hidden;
+}
+.btn::before{
+  content:'';
+  position:absolute;inset:0;
+  transform:translateX(-100%);
+  transition:.4s;
+}
+.btn:hover::before{transform:translateX(0);}
+.btn:hover{transform:translateY(-3px);}
+
+.btn-primary{
+  background:var(--gold);
+  color:var(--dark);
+}
+.btn-primary::before{background:var(--gold2);}
+
+.btn-ghost{
+  background:transparent;
+  color:var(--white);
+  border:1px solid rgba(255,255,255,.2);
+}
+.btn-ghost::before{background:rgba(255,255,255,.05);}
+
+.btn-fem{
+  background:linear-gradient(135deg,rgba(232,95,138,.15),rgba(232,95,138,.05));
+  color:var(--white);
+  border:1px solid rgba(232,95,138,.3);
+}
+.btn-fem::before{background:rgba(232,95,138,.1);}
+
+.btn-masc{
+  background:linear-gradient(135deg,rgba(74,159,212,.15),rgba(74,159,212,.05));
+  color:var(--white);
+  border:1px solid rgba(74,159,212,.3);
+}
+.btn-masc::before{background:rgba(74,159,212,.1);}
+
+/* Scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:var(--white2);
+  font-size:.65rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  opacity:.5;
+  animation:fadeIn 1s ease 1.5s both;
+}
+.scroll-line{
+  width:1px;height:50px;
+  background:linear-gradient(var(--gold2),transparent);
+  animation:scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine{
+  0%{transform:scaleY(0);transform-origin:top;}
+  50%{transform:scaleY(1);transform-origin:top;}
+  51%{transform:scaleY(1);transform-origin:bottom;}
+  100%{transform:scaleY(0);transform-origin:bottom;}
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeIn{from{opacity:0;}to{opacity:.5;}}
+
+/* ═══════════════ STATS ═══════════════ */
+.stats{
+  padding:80px 8%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.stat{
+  background:var(--dark);
+  padding:50px 40px;
+  text-align:center;
+  position:relative;
+  transition:.4s;
+}
+.stat:hover{background:var(--dark2);}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:4rem;
+  font-weight:300;
+  color:var(--gold2);
+  line-height:1;
+  margin-bottom:12px;
+}
+.stat-label{
+  font-size:.72rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--white2);
+  font-weight:300;
+}
+
+/* ═══════════════ SECTION HEADER ═══════════════ */
+.section-header{
+  text-align:center;
+  padding:100px 8% 60px;
+  position:relative;
+}
+.section-header .eyebrow{
+  font-size:.65rem;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:400;
+  margin-bottom:20px;
+  display:block;
+}
+.section-header h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,6vw,5rem);
+  font-weight:300;
+  line-height:1.1;
+}
+.section-header h2 em{
+  font-style:italic;
+  color:var(--gold2);
+}
+.section-divider{
+  width:60px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:30px auto 0;
+}
+
+/* ═══════════════ FILTER TABS ═══════════════ */
+.filter-tabs{
+  display:flex;justify-content:center;gap:0;
+  padding:0 8% 50px;
+  overflow-x:auto;
+}
+.filter-tab{
+  padding:12px 28px;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--white2);
+  font-family:'Jost',sans-serif;
+  font-size:.72rem;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  cursor:none;
+  transition:.3s;
+  white-space:nowrap;
+}
+.filter-tab:first-child{border-radius:2px 0 0 2px;}
+.filter-tab:last-child{border-radius:0 2px 2px 0;}
+.filter-tab.active,.filter-tab:hover{
+  background:rgba(201,168,76,.12);
+  color:var(--gold2);
+  border-color:var(--border);
+}
+
+/* ═══════════════ PRODUCT GRID ═══════════════ */
+.products{padding:0 8% 100px;}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1px;
+  background:var(--border2);
+  border:1px solid var(--border2);
+}
+
+.card{
+  background:var(--dark);
+  position:relative;
+  overflow:hidden;
+  cursor:none;
+  transition:.5s;
+}
+.card:hover{background:var(--dark2);}
+
+.card-img{
+  position:relative;
+  height:300px;
+  overflow:hidden;
+}
+.card-img img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:.7s;
+  filter:brightness(.85) saturate(.9);
+}
+.card:hover .card-img img{
+  transform:scale(1.08);
+  filter:brightness(.7) saturate(1.1);
+}
+
+.card-badge{
+  position:absolute;top:16px;right:16px;
+  padding:5px 14px;
+  font-size:.6rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  background:rgba(8,7,10,.8);
+  border:1px solid var(--border);
+  color:var(--gold2);
+  backdrop-filter:blur(6px);
+}
+
+.card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,7,10,.95) 0%,rgba(8,7,10,.3) 50%,transparent 100%);
+  opacity:0;
+  transition:.5s;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:25px;
+  gap:10px;
+}
+.card:hover .card-overlay{opacity:1;}
+
+.overlay-btns{
+  display:flex;gap:10px;width:100%;
+  transform:translateY(15px);
+  transition:.4s .1s;
+}
+.card:hover .overlay-btns{transform:translateY(0);}
+
+.overlay-btn{
+  flex:1;padding:13px 10px;
+  border-radius:2px;
+  font-family:'Jost',sans-serif;
+  font-size:.68rem;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  cursor:none;
+  text-decoration:none;
+  text-align:center;
+  border:none;
+  transition:.3s;
+}
+.overlay-btn-buy{
+  background:var(--gold);
+  color:var(--dark);
+}
+.overlay-btn-buy:hover{background:var(--gold2);}
+.overlay-btn-wa{
+  background:rgba(37,211,102,.15);
+  color:#4ddb85;
+  border:1px solid rgba(37,211,102,.3);
+}
+.overlay-btn-wa:hover{background:rgba(37,211,102,.25);}
+
+.card-content{
+  padding:22px 24px 28px;
+}
+.card-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;
+  font-weight:400;
+  margin-bottom:5px;
+  color:var(--white);
+}
+.card-desc{
+  font-size:.72rem;
+  color:var(--white2);
+  letter-spacing:1px;
+  margin-bottom:14px;
+  font-weight:300;
+}
+.card-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;
+  font-weight:600;
+  color:var(--gold2);
+}
+
+/* ═══════════════ FEATURED BANNER ═══════════════ */
+.banner{
+  margin:60px 8%;
+  padding:80px;
+  background:linear-gradient(135deg,var(--dark2),var(--dark3));
+  border:1px solid var(--border);
+  border-radius:2px;
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.banner::before{
+  content:'';
+  position:absolute;
+  top:-100px;right:-100px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(201,168,76,.08),transparent 60%);
+  pointer-events:none;
+}
+.banner-text .eyebrow{
+  font-size:.65rem;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:400;
+  margin-bottom:20px;
+  display:block;
+}
+.banner-text h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;
+  font-weight:300;
+  line-height:1.2;
+  margin-bottom:20px;
+}
+.banner-text h3 em{font-style:italic;color:var(--gold2);}
+.banner-text p{
+  color:var(--white2);
+  line-height:1.9;
+  font-weight:300;
+  font-size:.9rem;
+  margin-bottom:30px;
+}
+.banner-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+.banner-stat{
+  padding:20px;
+  border:1px solid var(--border2);
+  text-align:center;
+}
+.banner-stat strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;
+  color:var(--gold2);
+  margin-bottom:5px;
+}
+.banner-stat span{
+  font-size:.65rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--white2);
+}
+
+/* ═══════════════ ABOUT ═══════════════ */
+.about{
+  padding:100px 8%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:100px;
+  align-items:center;
+}
+.about-text .eyebrow{
+  font-size:.65rem;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:20px;
+  display:block;
+}
+.about-text h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3.5rem;
+  font-weight:300;
+  line-height:1.15;
+  margin-bottom:30px;
+}
+.about-text h2 em{font-style:italic;color:var(--gold2);}
+.about-text p{
+  color:var(--white2);
+  line-height:2;
+  font-weight:300;
+  font-size:.92rem;
+  margin-bottom:20px;
+}
+
+.about-features{
+  display:flex;flex-direction:column;gap:1px;
+  background:var(--border2);
+  border:1px solid var(--border2);
+}
+.feature{
+  background:var(--dark);
+  padding:30px 35px;
+  display:flex;align-items:flex-start;gap:20px;
+  transition:.3s;
+}
+.feature:hover{background:var(--dark2);}
+.feature-icon{
+  font-size:1.3rem;
+  flex-shrink:0;
+  margin-top:2px;
+}
+.feature-text strong{
+  display:block;
+  font-size:.8rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold2);
+  margin-bottom:6px;
+}
+.feature-text p{
+  color:var(--white2);
+  font-size:.85rem;
+  line-height:1.7;
+  font-weight:300;
+  margin:0;
+}
+
+/* ═══════════════ CONTACT ═══════════════ */
+.contact{
+  padding:100px 8%;
+  text-align:center;
+  border-top:1px solid var(--border2);
+}
+.contact .eyebrow{
+  font-size:.65rem;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:20px;
+  display:block;
+}
+.contact h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:300;
+  margin-bottom:20px;
+}
+.contact h2 em{font-style:italic;color:var(--gold2);}
+.contact p{
+  color:var(--white2);
+  max-width:500px;
+  margin:0 auto 55px;
+  font-weight:300;
+  line-height:1.9;
+}
+
+.contact-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border2);
+  border:1px solid var(--border2);
+  max-width:900px;
+  margin:0 auto 60px;
+}
+.contact-card{
+  background:var(--dark);
+  padding:40px 30px;
+  text-decoration:none;
+  transition:.4s;
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  color:var(--white);
+}
+.contact-card:hover{background:var(--dark2);}
+.contact-card-icon{font-size:2rem;}
+.contact-card-label{
+  font-size:.7rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--white2);
+  font-weight:300;
+}
+.contact-card-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;
+  color:var(--gold2);
+}
+
+/* ═══════════════ FOOTER ═══════════════ */
+footer{
+  border-top:1px solid var(--border2);
+  padding:40px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;
+  letter-spacing:6px;
+  color:var(--gold);
+}
+.footer-copy{
+  font-size:.72rem;
+  color:rgba(255,255,255,.25);
+  letter-spacing:1px;
+}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{
+  font-size:.7rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--white2);
+  text-decoration:none;
+  transition:.3s;
+}
+.footer-links a:hover{color:var(--gold2);}
+
+/* SCROLL TO TOP */
+.top-btn{
+  position:fixed;right:30px;bottom:30px;
+  width:50px;height:50px;
+  border-radius:2px;
+  background:var(--dark2);
+  border:1px solid var(--border);
+  color:var(--gold2);
+  font-size:.9rem;
+  cursor:none;
+  z-index:999;
+  transition:.4s;
+  opacity:0;
+  pointer-events:none;
+}
+.top-btn.visible{opacity:1;pointer-events:all;}
+.top-btn:hover{background:rgba(201,168,76,.12);}
+
+/* CART NOTIFICATION */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--dark2);
+  border:1px solid var(--border);
+  padding:16px 30px;
+  font-size:.78rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold2);
+  z-index:9999;
+  transition:.4s;
+  text-align:center;
+  backdrop-filter:blur(10px);
+  white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* MODAL */
+.modal-bg{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(8px);
+  z-index:5000;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:.4s;
+}
+.modal-bg.open{opacity:1;pointer-events:all;}
+.modal{
+  background:var(--dark2);
+  border:1px solid var(--border);
+  max-width:520px;width:100%;
+  padding:50px 45px;
+  position:relative;
+  transform:translateY(30px);
+  transition:.4s;
+}
+.modal-bg.open .modal{transform:translateY(0);}
+.modal-close{
+  position:absolute;top:18px;right:20px;
+  background:none;border:none;
+  color:var(--white2);font-size:1.2rem;
+  cursor:none;transition:.3s;
+}
+.modal-close:hover{color:var(--gold2);}
+.modal h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;
+  font-weight:300;
+  margin-bottom:8px;
+}
+.modal h3 em{font-style:italic;color:var(--gold2);}
+.modal-price{
+  font-size:1.5rem;
+  color:var(--gold2);
+  font-family:'Cormorant Garamond',serif;
+  margin-bottom:25px;
+}
+.modal-desc{
+  color:var(--white2);
+  line-height:1.9;
+  font-size:.88rem;
+  margin-bottom:30px;
+}
+.modal-btns{display:flex;gap:12px;}
+.modal-btn{
+  flex:1;padding:15px;
+  border-radius:2px;
+  font-family:'Jost',sans-serif;
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  cursor:none;
+  text-decoration:none;
+  text-align:center;
+  border:none;
+  transition:.3s;
+}
+.modal-btn-buy{background:var(--gold);color:var(--dark);}
+.modal-btn-buy:hover{background:var(--gold2);}
+.modal-btn-wa{
+  background:rgba(37,211,102,.12);
+  color:#4ddb85;
+  border:1px solid rgba(37,211,102,.3);
+}
+.modal-btn-wa:hover{background:rgba(37,211,102,.22);}
+
+/* REVEAL ANIMATION */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ═══════════════ RESPONSIVE ═══════════════ */
+@media(max-width:1100px){
+  .about{grid-template-columns:1fr;gap:50px;}
+  .banner{grid-template-columns:1fr;gap:40px;padding:50px 40px;}
+}
+
+@media(max-width:900px){
+  header{flex-direction:column;padding:14px 6%;gap:12px;}
+  header.scrolled{padding:12px 6%;}
+  nav{flex-wrap:wrap;justify-content:center;gap:4px;}
+  nav a{font-size:.7rem;padding:8px 12px;}
+  .stats{grid-template-columns:1fr;}
+  .contact-cards{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;}
+  #cursor,#cursor-ring{display:none;}
+  body{cursor:auto;}
+  .btn,.overlay-btn,.modal-btn,.top-btn,.filter-tab,.feature,.contact-card{cursor:pointer;}
+}
+
+@media(max-width:600px){
+  .hero h1{font-size:2.8rem;}
+  .hero-ctas{flex-direction:column;align-items:center;}
+  .btn{width:100%;max-width:300px;justify-content:center;}
+  .product-grid{grid-template-columns:1fr;}
+  .modal{padding:35px 25px;}
+  .modal-btns{flex-direction:column;}
+  .banner-stats{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- HEADER -->
+<header id="header">
+  <a href="#inicio" class="logo">ÉCLAT</a>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#femininos">Femininos</a>
+    <a href="#masculinos">Masculinos</a>
+    <a href="#empresa">Empresa</a>
+    <a href="#contato" class="nav-cta">Contato</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-line-left"></div>
+  <div class="hero-line-right"></div>
+
+  <img class="hero-logo-img" src="img/logo.png" alt="Éclat Parfums" onerror="this.style.display='none'">
+
+  <p class="hero-eyebrow">Maison de Parfums · Depuis 2020</p>
+
+  <h1>
+    <em>L'Art du</em>
+    <span>Parfum Exclusif</span>
+  </h1>
+
+  <p class="hero-desc">
+    Fragrâncias sofisticadas que transcendem o ordinário. Uma curadoria de aromas marcantes, originais e exclusivos — criados para quem não se contenta com menos do que o extraordinário.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#femininos" class="btn btn-fem">🌸 Coleção Feminina</a>
+    <a href="#masculinos" class="btn btn-masc">💎 Coleção Masculina</a>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Explorar</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat">
+    <div class="stat-num" data-target="50">0</div>
+    <div class="stat-label">Perfumes Exclusivos</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Produtos Originais</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" data-target="2000">0</div>
+    <div class="stat-label">Clientes Satisfeitos</div>
+  </div>
+</div>
+
+<!-- FEMININOS -->
+<section id="femininos">
+  <div class="section-header reveal">
+    <span class="eyebrow">Coleção Premium</span>
+    <h2><em>Femininos</em></h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="filter-tabs reveal">
+    <button class="filter-tab active" onclick="filterCards('all','fem')">Todos</button>
+    <button class="filter-tab" onclick="filterCards('under300','fem')">Até R$300</button>
+    <button class="filter-tab" onclick="filterCards('300to450','fem')">R$300–450</button>
+    <button class="filter-tab" onclick="filterCards('above450','fem')">Acima R$450</button>
+  </div>
+
+  <div class="products">
+    <div class="product-grid" id="femaleProducts"></div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<div class="banner reveal">
+  <div class="banner-text">
+    <span class="eyebrow">Por que nos escolher</span>
+    <h3>Qualidade que <em>você sente</em></h3>
+    <p>Selecionamos apenas as melhores fragrâncias do mercado, com origem garantida e qualidade certificada. Cada frasco é uma promessa de excelência.</p>
+    <a href="https://wa.me/5585999999999" target="_blank" class="btn btn-primary">Fale conosco</a>
+  </div>
+  <div class="banner-stats">
+    <div class="banner-stat">
+      <strong>5★</strong>
+      <span>Avaliação média</span>
+    </div>
+    <div class="banner-stat">
+      <strong>48h</strong>
+      <span>Entrega express</span>
+    </div>
+    <div class="banner-stat">
+      <strong>100%</strong>
+      <span>Autenticidade</span>
+    </div>
+    <div class="banner-stat">
+      <strong>24/7</strong>
+      <span>Suporte ativo</span>
+    </div>
+  </div>
+</div>
+
+<!-- MASCULINOS -->
+<section id="masculinos">
+  <div class="section-header reveal">
+    <span class="eyebrow">Coleção Premium</span>
+    <h2><em>Masculinos</em></h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="filter-tabs reveal">
+    <button class="filter-tab active" onclick="filterCards('all','masc')">Todos</button>
+    <button class="filter-tab" onclick="filterCards('under300','masc')">Até R$300</button>
+    <button class="filter-tab" onclick="filterCards('300to450','masc')">R$300–450</button>
+    <button class="filter-tab" onclick="filterCards('above450','masc')">Acima R$450</button>
+  </div>
+
+  <div class="products">
+    <div class="product-grid" id="maleProducts"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about reveal" id="empresa">
+  <div class="about-text">
+    <span class="eyebrow">Nossa história</span>
+    <h2>Uma <em>paixão</em><br>por fragrâncias</h2>
+    <p>A ÉCLAT PARFUMS nasceu da crença de que um perfume não é apenas um acessório — é uma extensão da sua identidade. Dedicamo-nos a oferecer o melhor da perfumaria mundial, com atendimento humanizado e preços que fazem sentido.</p>
+    <p>Cada produto em nosso catálogo passa por uma curadoria rigorosa para garantir autenticidade, qualidade e a experiência olfativa que você merece.</p>
+    <a href="#contato" class="btn btn-ghost" style="margin-top:15px">Conhecer mais</a>
+  </div>
+
+  <div class="about-features">
+    <div class="feature">
+      <div class="feature-icon">✦</div>
+      <div class="feature-text">
+        <strong>Qualidade Premium</strong>
+        <p>Fragrâncias selecionadas com excelência internacional e acabamento de luxo. Apenas originais.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">◈</div>
+      <div class="feature-text">
+        <strong>Entrega Segura</strong>
+        <p>Envios rápidos e protegidos para todo o Brasil. Seu produto chega em perfeitas condições.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">◇</div>
+      <div class="feature-text">
+        <strong>Pagamento Protegido</strong>
+        <p>Transações seguras e múltiplas formas de pagamento com suporte completo.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">❋</div>
+      <div class="feature-text">
+        <strong>Atendimento 24h</strong>
+        <p>Nossa equipe está disponível para tirar dúvidas e acompanhar seu pedido a qualquer hora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact reveal" id="contato">
+  <span class="eyebrow">Fale conosco</span>
+  <h2>Vamos <em>conversar</em></h2>
+  <p>Atendimento profissional e personalizado. Estamos prontos para ajudá-lo a encontrar a fragrância perfeita para você.</p>
+
+  <div class="contact-cards">
+    <a href="https://wa.me/5585999999999" target="_blank" class="contact-card">
+      <div class="contact-card-icon">💬</div>
+      <div class="contact-card-label">WhatsApp</div>
+      <div class="contact-card-value">(85) 9 9999-9999</div>
+    </a>
+    <a href="https://instagram.com" target="_blank" class="contact-card">
+      <div class="contact-card-icon">◎</div>
+      <div class="contact-card-label">Instagram</div>
+      <div class="contact-card-value">@eclatparfums</div>
+    </a>
+    <a href="https://maps.google.com" target="_blank" class="contact-card">
+      <div class="contact-card-icon">◈</div>
+      <div class="contact-card-label">Localização</div>
+      <div class="contact-card-value">Fortaleza, CE</div>
+    </a>
+  </div>
+
+  <a href="https://wa.me/5585999999999" target="_blank" class="btn btn-primary">
+    Fazer pedido agora →
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ÉCLAT</div>
+  <div class="footer-copy">© 2026 ÉCLAT PARFUMS — Todos os direitos reservados</div>
+  <div class="footer-links">
+    <a href="#inicio">Início</a>
+    <a href="#femininos">Femininos</a>
+    <a href="#masculinos">Masculinos</a>
+    <a href="#contato">Contato</a>
+  </div>
+</footer>
+
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="document.getElementById('modalBg').classList.remove('open')">✕</button>
+    <h3 id="modalName"></h3>
+    <div class="modal-price" id="modalPrice"></div>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-btns">
+      <button class="modal-btn modal-btn-buy" onclick="addToCart()">Comprar agora</button>
+      <a class="modal-btn modal-btn-wa" id="modalWa" href="#" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══ CURSOR ═══ */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+});
+
+function animateRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a,button,.card,.filter-tab,.feature,.contact-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.width='16px';cur.style.height='16px';
+    ring.style.width='50px';ring.style.height='50px';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.width='10px';cur.style.height='10px';
+    ring.style.width='36px';ring.style.height='36px';
+  });
+});
+
+/* ═══ HEADER SCROLL ═══ */
+const header=document.getElementById('header');
+const topBtn=document.getElementById('topBtn');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>60)header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
+  if(window.scrollY>400)topBtn.classList.add('visible');
+  else topBtn.classList.remove('visible');
+});
+
+/* ═══ REVEAL ═══ */
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* ═══ COUNTER ═══ */
+const counterObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const target=+el.dataset.target;
+      if(!target)return;
+      const duration=1800;
+      const step=target/duration*16;
+      let current=0;
+      const timer=setInterval(()=>{
+        current=Math.min(current+step,target);
+        el.textContent=Math.floor(current)+(target>=1000?'+':'+');
+        if(current>=target)clearInterval(timer);
+      },16);
+      counterObserver.unobserve(el);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(el=>counterObserver.observe(el));
+
+/* ═══ DATA ═══ */
+const femDescriptions = [
+  'Floral gourmand com notas de baunilha iris e patchouli.',
+  'Feminino e sedutor com rosa e baunilha envolventes.',
+  'Elegância atemporal com jasmim e ylang-ylang.',
+  'Sensual e picante com laranja amarga e fava tonka.',
+  'Exótico e quente com orquídea e âmbar sedoso.',
+  'Jovem e vibrante com magnólia e sândalo.',
+  'Doce e viciante com kiwi, litchi e flor de caju.',
+  'Livre e elegante com lavanda e patchouli.',
+  'Fresco e radiante com rosa e bergamota.',
+  'Floral cítrico com notas de framboesa e cedro.',
+  'Feminilidade pura com rosa e pêonia delicadas.',
+  'Romântico e sensível com maçã e caramelo.',
+  'Celestial e doce com notas de mel e baunilha.',
+  'Brilhante e audacioso com framboesa e rosa.',
+  'Romântico com magnólia branca e almíscar.',
+  'Lunar e etéreo com pêra e violeta suave.',
+  'Luxuoso e irresistível com damasco e ylang-ylang.',
+  'Misterioso com ameixa e rosas negras profundas.',
+  'Divino com figos, chia e gerânio tropical.',
+  'Contemporâneo com bergamota cedro e âmbar.',
+  'Encantador com espuma do mar e hibisco.',
+  'Parisiense com rosa, peônia e patchouli.',
+  'Sofisticado com rosa turca e pimenta rosa.',
+  'Noturno com gardênia, baunilha e almíscar.',
+  'Explosivo com rosa, patchouli e baunilha turca.'
+];
+
+const mascDescriptions = [
+  'Fresco e selvagem com bergamota pimenta e âmbar.',
+  'Madeiroso e elegante com cedro sândalo e incenso.',
+  'Aquático e energético com menta e madeiras.',
+  'Ousado e dourado com mandarina e couro.',
+  'Raro e lendário com abacaxi, rosa e almíscar.',
+  'Aquático e puro com notas marinhas e cedro.',
+  'Intenso e noturno com couro e baunilha negra.',
+  'Fresco e masculino com maçã e cedro verde.',
+  'Cativante e dourado com âmbar e sândalo rico.',
+  'Elegante e reservado com tabaco e lavanda.',
+  'Sofisticado com bergamota couro e notas amadeiradas.',
+  'Sedutor e festivo com cravo pimenta e âmbar.',
+  'Sensual e provocador com lavanda e flor de laranjeira.',
+  'Mediterrâneo e fresco com bergamota e cedro.',
+  'Exótico e profundo com oud, almíscar e rosa.',
+  'Refrescante com limão, ervas e almíscar branco.',
+  'Futurista e intrigante com lavanda e âmbar.',
+  'Clássico e lendário com bergamota e patchouli.',
+  'Contemporâneo com maçã cidreira e cedro.',
+  'Ousado e noturno com gengibre e pimenta vermelha.',
+  'Singular com noz-moscada teca e âmbar.',
+  'Marinho e vibrante com bergamota e almíscar.',
+  'Ardente com pimenta preta, couro e sândalo.',
+  'Opulento com bergamota, lavanda e cedro.'
+];
+
+const femalePerfumes=[
+  {name:'La Vie Est Belle',price:'R$ 329,90',raw:329.90,img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop'},
+  {name:'Good Girl',price:'R$ 379,90',raw:379.90,img:'https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=800&auto=format&fit=crop'},
+  {name:'Chanel Coco',price:'R$ 499,90',raw:499.90,img:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop'},
+  {name:'Scandal',price:'R$ 299,90',raw:299.90,img:'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop'},
+  {name:'Euphoria',price:'R$ 259,90',raw:259.90,img:'https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop'},
+  {name:'212 Sexy',price:'R$ 289,90',raw:289.90,img:'https://images.unsplash.com/photo-1588405748880-12d1d2a59b75?q=80&w=800&auto=format&fit=crop'},
+  {name:'Fantasy',price:'R$ 249,90',raw:249.90,img:'https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=800&auto=format&fit=crop'},
+  {name:'Libre',price:'R$ 419,90',raw:419.90,img:'https://images.unsplash.com/photo-1622618991746-fe6004db3a47?q=80&w=800&auto=format&fit=crop'},
+  {name:'Idôle',price:'R$ 369,90',raw:369.90,img:'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?q=80&w=800&auto=format&fit=crop'},
+  {name:'Floratta Red',price:'R$ 159,90',raw:159.90,img:'https://images.unsplash.com/photo-1619994403073-2cec99c8f9c8?q=80&w=800&auto=format&fit=crop'},
+  {name:'Miss Dior',price:'R$ 459,90',raw:459.90,img:'https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=800&auto=format&fit=crop'},
+  {name:'Nina Ricci',price:'R$ 279,90',raw:279.90,img:'https://images.unsplash.com/photo-1611078489935-0cb964de46d6?q=80&w=800&auto=format&fit=crop'},
+  {name:'Angel',price:'R$ 389,90',raw:389.90,img:'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?q=80&w=800&auto=format&fit=crop'},
+  {name:'Lady Million',price:'R$ 429,90',raw:429.90,img:'https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop'},
+  {name:'Amor Amor',price:'R$ 199,90',raw:199.90,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop'},
+  {name:'Luna',price:'R$ 139,90',raw:139.90,img:'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=800&auto=format&fit=crop'},
+  {name:'J\'adore',price:'R$ 559,90',raw:559.90,img:'https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=800&auto=format&fit=crop'},
+  {name:'Poison Girl',price:'R$ 319,90',raw:319.90,img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop'},
+  {name:'Olympéa',price:'R$ 349,90',raw:349.90,img:'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop'},
+  {name:'My Way',price:'R$ 449,90',raw:449.90,img:'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=800&auto=format&fit=crop'},
+  {name:'Love Spell',price:'R$ 189,90',raw:189.90,img:'https://images.unsplash.com/photo-1610461888750-10bfc601b874?q=80&w=800&auto=format&fit=crop'},
+  {name:'Mon Paris',price:'R$ 409,90',raw:409.90,img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop'},
+  {name:'Burberry Her',price:'R$ 469,90',raw:469.90,img:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop'},
+  {name:'Crystal Noir',price:'R$ 299,90',raw:299.90,img:'https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=800&auto=format&fit=crop'},
+  {name:'Flowerbomb',price:'R$ 589,90',raw:589.90,img:'https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=800&auto=format&fit=crop'}
+];
+
+const malePerfumes=[
+  {name:'Dior Sauvage',price:'R$ 499,90',raw:499.90,img:'https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop'},
+  {name:'Bleu de Chanel',price:'R$ 589,90',raw:589.90,img:'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop'},
+  {name:'Invictus',price:'R$ 349,90',raw:349.90,img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop'},
+  {name:'1 Million',price:'R$ 399,90',raw:399.90,img:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop'},
+  {name:'Aventus Creed',price:'R$ 1.299,90',raw:1299.90,img:'https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=800&auto=format&fit=crop'},
+  {name:'Kaiak',price:'R$ 129,90',raw:129.90,img:'https://images.unsplash.com/photo-1588405748880-12d1d2a59b75?q=80&w=800&auto=format&fit=crop'},
+  {name:'Ferrari Black',price:'R$ 179,90',raw:179.90,img:'https://images.unsplash.com/photo-1611078489935-0cb964de46d6?q=80&w=800&auto=format&fit=crop'},
+  {name:'Arbo',price:'R$ 149,90',raw:149.90,img:'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?q=80&w=800&auto=format&fit=crop'},
+  {name:'Malbec Gold',price:'R$ 219,90',raw:219.90,img:'https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=800&auto=format&fit=crop'},
+  {name:'Polo Black',price:'R$ 429,90',raw:429.90,img:'https://images.unsplash.com/photo-1610461888750-10bfc601b874?q=80&w=800&auto=format&fit=crop'},
+  {name:'Armani Code',price:'R$ 479,90',raw:479.90,img:'https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop'},
+  {name:'212 VIP Men',price:'R$ 359,90',raw:359.90,img:'https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=800&auto=format&fit=crop'},
+  {name:'Le Male',price:'R$ 439,90',raw:439.90,img:'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=800&auto=format&fit=crop'},
+  {name:'Acqua di Gio',price:'R$ 529,90',raw:529.90,img:'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=800&auto=format&fit=crop'},
+  {name:'Essencial Oud',price:'R$ 239,90',raw:239.90,img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop'},
+  {name:'Lacoste Blanc',price:'R$ 299,90',raw:299.90,img:'https://images.unsplash.com/photo-1619994403073-2cec99c8f9c8?q=80&w=800&auto=format&fit=crop'},
+  {name:'Phantom',price:'R$ 489,90',raw:489.90,img:'https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=800&auto=format&fit=crop'},
+  {name:'Legend',price:'R$ 259,90',raw:259.90,img:'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?q=80&w=800&auto=format&fit=crop'},
+  {name:'Hugo Boss',price:'R$ 389,90',raw:389.90,img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop'},
+  {name:'Bad Boy',price:'R$ 459,90',raw:459.90,img:'https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=800&auto=format&fit=crop'},
+  {name:'The Blend',price:'R$ 229,90',raw:229.90,img:'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop'},
+  {name:'Nautica Voyage',price:'R$ 199,90',raw:199.90,img:'https://images.unsplash.com/photo-1611078489935-0cb964de46d6?q=80&w=800&auto=format&fit=crop'},
+  {name:'Quasar',price:'R$ 159,90',raw:159.90,img:'https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=800&auto=format&fit=crop'},
+  {name:'Spicebomb',price:'R$ 559,90',raw:559.90,img:'https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop'},
+  {name:'Gentleman Givenchy',price:'R$ 649,90',raw:649.90,img:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop'}
+];
+
+/* ═══ RENDER ═══ */
+function createCard(product, desc, badge){
+  return `
+  <div class="card" data-price="${product.raw}" data-name="${product.name}" data-pricestr="${product.price}" data-desc="${desc}" data-badge="${badge}">
+    <div class="card-img">
+      <img loading="lazy" src="${product.img}" alt="${product.name}">
+      <span class="card-badge">${badge}</span>
+      <div class="card-overlay">
+        <div class="overlay-btns">
+          <button class="overlay-btn overlay-btn-buy" onclick="openModal(this.closest('.card'))">Ver detalhes</button>
+          <a class="overlay-btn overlay-btn-wa" href="https://wa.me/5585999999999?text=Olá! Tenho interesse no perfume ${encodeURIComponent(product.name)} — ${product.price}" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-name">${product.name}</div>
+      <div class="card-desc">${desc}</div>
+      <div class="card-price">${product.price}</div>
+    </div>
+  </div>`;
+}
+
+function renderProducts(){
+  const fem=document.getElementById('femaleProducts');
+  const masc=document.getElementById('maleProducts');
+  femalePerfumes.forEach((p,i)=>{fem.innerHTML+=createCard(p,femDescriptions[i],'Feminino');});
+  malePerfumes.forEach((p,i)=>{masc.innerHTML+=createCard(p,mascDescriptions[i],'Masculino');});
+}
+renderProducts();
+
+/* ═══ FILTER ═══ */
+function filterCards(range,gender){
+  const gridId = gender==='fem' ? 'femaleProducts' : 'maleProducts';
+  const cards = document.querySelectorAll(`#${gridId} .card`);
+  cards.forEach(c=>{
+    const price=parseFloat(c.dataset.price);
+    let show=false;
+    if(range==='all') show=true;
+    else if(range==='under300') show=price<300;
+    else if(range==='300to450') show=price>=300&&price<=450;
+    else if(range==='above450') show=price>450;
+    c.style.display = show ? '' : 'none';
+  });
+
+  // update active tab
+  const section = gender==='fem' ? document.getElementById('femininos') : document.getElementById('masculinos');
+  section.querySelectorAll('.filter-tab').forEach(t=>{
+    t.classList.toggle('active', t.getAttribute('onclick').includes(`'${range}'`));
+  });
+}
+
+/* ═══ MODAL ═══ */
+let currentProduct = null;
+function openModal(card){
+  currentProduct = card;
+  document.getElementById('modalName').innerHTML = card.dataset.name;
+  document.getElementById('modalPrice').textContent = card.dataset.pricestr;
+  document.getElementById('modalDesc').textContent = card.dataset.desc;
+  document.getElementById('modalWa').href = `https://wa.me/5585999999999?text=Olá! Tenho interesse no ${encodeURIComponent(card.dataset.name)} — ${card.dataset.pricestr}`;
+  document.getElementById('modalBg').classList.add('open');
+}
+function closeModal(e){
+  if(e.target===document.getElementById('modalBg'))
+    document.getElementById('modalBg').classList.remove('open');
+}
+function addToCart(){
+  document.getElementById('modalBg').classList.remove('open');
+  showToast('✦ ' + currentProduct.dataset.name + ' adicionado!');
+}
+
+/* ═══ TOAST ═══ */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+/* ═══ CURSOR EVENTS on dynamically added cards ═══ */
+document.addEventListener('mouseover', e=>{
+  if(e.target.closest('.card,.overlay-btn,.modal-btn')){
+    cur.style.width='16px';cur.style.height='16px';
+    ring.style.width='50px';ring.style.height='50px';
+  }
+});
+document.addEventListener('mouseout', e=>{
+  if(e.target.closest('.card,.overlay-btn,.modal-btn')){
+    cur.style.width='10px';cur.style.height='10px';
+    ring.style.width='36px';ring.style.height='36px';
+  }
+});
+</script>
+</body>
+</html>
